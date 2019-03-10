@@ -2,8 +2,9 @@
  Test list features.
  */
 public class UserOfList {
+    static List_inArraySlots list;
     public static void main( String[] args ) {
-        List_inArraySlots list = new List_inArraySlots();
+        list = new List_inArraySlots();
 
         System.out.println( "number of elements: " + list.size() );
         System.out.println( "empty list:" + list);
@@ -35,5 +36,66 @@ public class UserOfList {
             list.add( -i);
         System.out.println("after second expansion: " + list.size() + " elements:");
         System.out.println( list);
-    }
+
+
+        System.out.println( "sample elements from list:");
+        for(int elemIndex = 1; elemIndex < list.size(); elemIndex *= 2 ) {
+            System.out.println( "element " + elemIndex + ": "
+                              + list.get( elemIndex)
+                              );
+        }
+        // test set
+        setTest(  8);
+        setTest( 16);
+        System.out.println();
+        // test adding at a specified position
+        addAtTest( 0, 29); // beginning of the list
+
+        // end of the list using the new add method
+        addAtTest( list.size(), 17);
+
+        addAtTest( 2, 19); // middle of a small list
+
+        // force an expansion
+        addAtTest( 2, 23);
+        addAtTest( 2, 23);
+        addAtTest( 2, 23);
+
+        // test removing an element
+        System.out.println("removing value " + list.remove( 6)
+                          + ", leaving " + list.size() + " elements:");
+        System.out.println( list);
+        System.out.println(
+            "expecting:" + System.lineSeparator()
+          + "[29,0,23,23,23,19, NO -1 HERE! -2,-3...]");
+
+      }
+
+      /**
+      Test the set() method, reporting and
+      changing the value at index @modifyAt.
+      */
+      private static void setTest( int modifyAt
+                                ) {
+        System.out.println(
+          "changed element " + modifyAt + " from "
+          + list.set( modifyAt, modifyAt + 1000) + " to "
+          + list.get( modifyAt)
+        );
+      }
+
+      private static void addAtTest( int addAt
+                                   , int value
+                                  ) {
+        list.add( addAt, value);
+        System.out.println(
+          "insert " + value
+          + " at position " + addAt
+          + ", resulting in "  + list.size() + " elements:"
+          + System.lineSeparator()
+          + list
+          + System.lineSeparator()
+          );
+      }
+
 }

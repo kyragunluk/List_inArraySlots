@@ -62,4 +62,60 @@ public class List_inArraySlots {
         for(int i = 0; i < storage.length; i++) //repopulate with old values
            list[i] = storage[i];
      }
+
+     /**
+       accessor
+       @return element @index from this list
+       precondition: @index is within the bounds of the array.
+           (Having warned the user about this precondition,
+            you should NOT complicate your code to check
+            whether user violated the condition.)
+      */
+     public int get( int index ) {
+       return list[index];
+     }
+
+     /**
+       Set value at @index to @newValue
+
+       @return old value at @index
+       @precondition: @index is within the bounds of this list.
+      */
+     public int set( int index, int newValue ) {
+       int holder = list[index];
+       list[index] = newValue;
+       return holder;
+     }
+
+     /**
+       Insert @value at position @index in this list.
+
+       Shift the element currently at that position (if any)
+       and any subsequent elements to the right
+       (that is, increase the index associated with each).
+      */
+      public void add( int index, int value) {
+        for (int i = list.length-1; i > index; i--){
+            list[i] = list[i-1];
+        }
+        list[index] = value;
+      }
+
+
+     /**
+       Remove the element at position @index in this list.
+
+       Shift any subsequent elements to the left (that is,
+       decrease the index associated with each).
+
+       @return the value that was removed from the list
+      */
+      public int remove( int index) {
+        int holder = list[index];
+        for (int i = index; i < list.length-1; i++){
+            list[i] = list[i+1];
+        }
+        return holder;
+      }
+
 }
